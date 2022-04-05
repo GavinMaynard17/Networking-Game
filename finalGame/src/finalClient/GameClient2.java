@@ -25,20 +25,24 @@ public class GameClient2 {
 		
 		//enter round 1
 		
-		int numOfRounds = in.read();
+		int numOfRounds = Integer.parseInt(in.readLine());
 		int roundNum = 1;
 		//boolean answerer = false;?
 		
 		while (numOfRounds > 0){
-			System.out.println("Round " + roundNum + ": \n");
+			System.out.println("Round " + roundNum + ":");
 			
-			sockPrint(in);//should print initial details of a round, the selector, the board, and the current points
+			while(in.ready()) {
+				System.out.println(in.readLine());
+			}//should print initial details of a round, the selector, the board, and the current points
 			
 			out.println(keyboard.readLine());//catNum
 			
 			out.println(keyboard.readLine());//pValue
 				
-			sockPrint(in);
+			while(in.ready()) {
+				System.out.println(in.readLine());
+			}
 			//this will display the question and answer (WHY NO WORK!!!!!)
 		
 			out.println(keyboard.readLine());//cAns
@@ -49,7 +53,7 @@ public class GameClient2 {
 			
 			numOfRounds--;	
 			roundNum++;
-		}
+		}//game over
 		
 		while(in.ready()) {
 			System.out.println(in.readLine());
@@ -57,12 +61,4 @@ public class GameClient2 {
 		
 		socket.close();
 	}
-	
-	public static void sockPrint(BufferedReader in) throws IOException {
-		while(in.ready()) {
-			System.out.println(in.readLine());
-		}
-	}
-	
-	
 }
